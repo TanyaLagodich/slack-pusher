@@ -1,0 +1,27 @@
+{
+  "name": "slack-pusher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "fastify start index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanyaLagodich/slack-pusher.git"
+  },
+  "author": "Tatiana Lagodich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TanyaLagodich/slack-pusher/issues"
+  },
+  "homepage": "https://github.com/TanyaLagodich/slack-pusher#readme",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.1",
+    "fastify": "^4.25.2"
+  },
+  "devDependencies": {
+    "fastify-cli": "^6.0.1"
+  }
+}
