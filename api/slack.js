@@ -18,8 +18,14 @@ class SlackApi extends HttpApi {
         return data.channels;
     }
 
-    async sendNewMessage({ channel, text }) {
-        await this.post({ endpoint: 'chat.postMessage', data: { channel, text } });
+    async sendNewMessage({ channel, blocks }) {
+        await this.post({
+            endpoint: 'chat.postMessage',
+            data: {
+                blocks: JSON.stringify(blocks),
+                channel,
+            },
+        });
     }
 }
 

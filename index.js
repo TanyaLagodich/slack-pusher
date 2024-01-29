@@ -1,8 +1,14 @@
 const fastify = require('fastify')({ logger: true });
-const routes = require('./routers');
+const cron = require('node-cron');
+const SlackController = require("./controllers/slack.controller");
+const AsanaController = require("./controllers/asana.controller");
 
+const slackController = new SlackController();
+const asanaController = new AsanaController(slackController);
 
-fastify.register(routes);
+cron.schedule('* * * * *', () => { // пока раз в минуту для теста
+    asanaController.getTasksFromSection(process.env.WORKSPACE_GID);
+});
 
 const start = async (fastify, options) => {
     try {
@@ -14,6 +20,5 @@ const start = async (fastify, options) => {
     }
 };
 start(fastify)
-// Экспортируем функцию для запуска сервера
 module.exports = start;
 

@@ -1,26 +1,24 @@
 const AsanaApi = require('../api/asana');
+const trimText = require('../utils/trimText');
 
 class AsanaController {
     constructor(slackController) {
-        console.log({ slackController });
         this.slackController = slackController;
     }
 
-    async getTasksFromSection(req, reply) {
-        console.log('getTasksFromSection');
-        let tasks = await AsanaApi.getTaskFromSection(req.params.sectionID);
+    async getTasksFromSection(sectionID) {
+        let tasks = await AsanaApi.getTaskFromSection(sectionID);
 
         const tasksDetails = await Promise.all(tasks.map(async ({ gid }) => {
             const task = await AsanaApi.getTaskByID(gid);
             return {
                 gid: task.gid,
                 name: task.name,
-                notes: task.notes,
+                notes: trimText(task.notes),
+                permalink_url: task.permalink_url,
             };
         }));
-        console.log({ tasks }, this.slackController);
         await this.slackController.sendMessageToChannel(tasksDetails);
-        reply.send('Hi');
     }
 }
 
