@@ -1,12 +1,10 @@
-const Handlebars = require('handlebars');
-const fs = require('fs');
-const path = require('path');
+require('dotenv').config();
 const SlackApi = require('../api/slack');
 const generateContent = require("../utils/generetaContent");
 
 class SlackController {
     async sendMessageToChannel(data) {
-        const channel = await this.getCurrentChannel('grp-front-mr');
+        const channel = await this.getCurrentChannel(process.env.SLACK_CHANNEL_NAME);
         await SlackApi.sendNewMessage({
             channel: channel.id,
             blocks: generateContent(data),
