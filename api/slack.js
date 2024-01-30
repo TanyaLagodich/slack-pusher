@@ -13,14 +13,12 @@ class SlackApi extends HttpApi {
     });
   }
 
-  async getConversationList({ types }) {
-    // TODO add error handler
-    const { data } = await this.get({ endpoint: 'conversations.list', params: { types } });
-    return data.channels;
+  getConversationList({ types }) {
+    return this.get({ endpoint: 'conversations.list', params: { types } });
   }
 
-  async sendNewMessage({ channel, blocks }) {
-    await this.post({
+  sendNewMessage({ channel, blocks }) {
+    return this.post({
       endpoint: 'chat.postMessage',
       data: {
         blocks: JSON.stringify(blocks),

@@ -13,14 +13,12 @@ class AsanaApi extends HttpApi {
     });
   }
 
-  async getTaskFromSection(sectionID) {
-    const { data } = await this.get({ endpoint: `sections/${sectionID}/tasks` });
-    return data.data;
+  getTaskFromSection(sectionID) {
+    return this.get({ endpoint: `sections/${sectionID}/tasks` });
   }
 
-  async getTaskByID(taskID) {
-    const { data } = await this.get({ endpoint: `tasks/${taskID}` });
-    return data.data;
+  getTaskByID(taskID) {
+    return this.get({ endpoint: `tasks/${taskID}` });
   }
 }
 

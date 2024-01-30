@@ -1,4 +1,5 @@
 const axios = require('axios');
+const logger = require('../logger');
 
 class HttpApi {
   constructor({ baseURL, headers }) {
@@ -29,7 +30,7 @@ class HttpApi {
   }) {
     try {
       if (method === 'get') {
-        return this._axios[method](endpoint, { params });
+        return this._axios[method]('/ert', { params });
       }
       if (method === 'post') {
         return this._axios[method](endpoint, data);
@@ -37,7 +38,7 @@ class HttpApi {
 
       throw new Error('Invalid HTTP method');
     } catch (err) {
-      return err;
+      logger.log('error', JSON.stringify(err));
     }
   }
 }
