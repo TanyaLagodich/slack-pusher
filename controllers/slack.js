@@ -12,17 +12,16 @@ class Slack {
         blocks: generateContent(data),
       });
     } catch (err) {
-      logger.log('error', JSON.stringify(err));
+      logger.log('error', err);
     }
   }
 
   async getCurrentChannel(channelName) {
     try {
-      const conversations = await SlackApi.getConversationList({ types: 'private_channel' });
-
-      return conversations.find((conversation) => conversation.name === channelName);
+      const { data: { channels }} = await SlackApi.getConversationList({ types: 'private_channel' });
+      return channels.find((channel) => channel.name === channelName);
     } catch (err) {
-      logger.log('error', JSON.stringify(err));
+      logger.log('error', err);
     }
   }
 }

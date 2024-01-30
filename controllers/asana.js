@@ -9,10 +9,10 @@ class Asana {
 
   async getTasksFromSection(sectionID) {
     try {
-      const tasks = await AsanaApi.getTaskFromSection(sectionID);
+      const { data: { data: tasks } } = await AsanaApi.getTaskFromSection(sectionID);
 
       const tasksDetails = await Promise.all(tasks.map(async ({ gid }) => {
-        const task = await AsanaApi.getTaskByID(gid);
+        const { data: { data: task }} = await AsanaApi.getTaskByID(gid);
         return {
           gid: task.gid,
           name: task.name,

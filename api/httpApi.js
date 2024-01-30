@@ -30,7 +30,7 @@ class HttpApi {
   }) {
     try {
       if (method === 'get') {
-        return this._axios[method]('/ert', { params });
+        return this._axios[method](endpoint, { params });
       }
       if (method === 'post') {
         return this._axios[method](endpoint, data);
@@ -38,7 +38,7 @@ class HttpApi {
 
       throw new Error('Invalid HTTP method');
     } catch (err) {
-      logger.log('error', JSON.stringify(err));
+      logger.log('error', err);
     }
   }
 }
