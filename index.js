@@ -1,8 +1,8 @@
 require('dotenv').config();
 const http = require('http');
 const cron = require('node-cron');
-const SlackController = require('./controllers/slack');
-const AsanaController = require('./controllers/asana');
+const SlackController = require('./src/controllers/slack');
+const AsanaController = require('./src/controllers/asana');
 
 const slackController = new SlackController();
 const asanaController = new AsanaController(slackController);

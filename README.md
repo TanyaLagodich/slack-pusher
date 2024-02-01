@@ -15,7 +15,10 @@ To run the application, follow these steps:
 - - `WORKSPACE_GID`: The GID workspace in Asana where the tasks are located.
 - - `CRON_MINUTES`: The frequency (in minutes) at which the application should fetch tasks.
 
-## How to Run with Docker
+## Development
+```npm start```
+
+## Run Docker
 After setting up the environment variables, you can start the application by running:
 ```docker run slack-pusher```
 
