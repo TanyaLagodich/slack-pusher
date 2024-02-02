@@ -17,6 +17,14 @@ class SlackApi extends HttpApi {
     return this.get({ endpoint: 'conversations.list', params: { types } });
   }
 
+  getAllMessages({ channel }) {
+    return this.get({ endpoint: 'conversations.history', params: { channel } });
+  }
+
+  addMessageToThread({ channel, thread_ts, text }) {
+    return this.post({ endpoint: 'chat.postMessage', data: { channel, thread_ts, text } });
+  }
+
   sendNewMessage({ channel, blocks }) {
     return this.post({
       endpoint: 'chat.postMessage',
