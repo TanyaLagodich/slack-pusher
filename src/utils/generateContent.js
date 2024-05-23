@@ -13,7 +13,8 @@ export const generateContent = (assignees, objectAttributes) => {
         },
         {
           type: 'mrkdwn',
-          text: `*Author:* ${assignees.name}`
+          // Special for Shahriyar
+          text: `*${assignees.id === 41 ? 'Person to blame' : 'Author'}:* ${assignees.name}`
         },
         {
           type: 'mrkdwn',

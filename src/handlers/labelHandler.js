@@ -1,5 +1,5 @@
 import SlackController from '../controllers/slack.js';
-import { generateContent } from '../utils/generetaContent.js';
+import { generateContent } from '../utils/generateContent.js';
 import MergeRequest from '../models/MergeRequest.js';
 
 export const handleLabelEvent  = async (currentLabels, assignees, objectAttributes) => {
