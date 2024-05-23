@@ -1,5 +1,5 @@
-const axios = require('axios');
-const logger = require('../logger');
+import axios from 'axios';
+import logger from '../logger.js';
 
 class HttpApi {
   constructor({ baseURL, headers }) {
@@ -43,4 +43,4 @@ class HttpApi {
   }
 }
 
-module.exports = HttpApi;
+export default HttpApi;

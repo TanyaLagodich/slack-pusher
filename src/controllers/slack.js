@@ -1,15 +1,14 @@
-require('dotenv').config();
-const SlackApi = require('../api/slack');
-const generateContent = require('../utils/generetaContent');
-const logger = require("../logger");
+import 'dotenv/config';
+import SlackApi from '../api/slack.js';
+import logger from '../logger.js';
 
-class Slack {
+class SlackController {
   async sendMessageToChannel(data) {
     try {
       const channel = await this.getCurrentChannel(process.env.SLACK_CHANNEL_NAME);
       await SlackApi.sendNewMessage({
         channel: channel.id,
-        blocks: generateContent(data),
+        blocks: JSON.stringify(data),
       });
     } catch (err) {
       logger.log('error', err);
@@ -54,4 +53,4 @@ class Slack {
   }
 }
 
-module.exports = Slack;
+export default new SlackController();

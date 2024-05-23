@@ -1,12 +1,10 @@
-require('dotenv').config();
-const HttpApi = require('./httpApi');
-
-const SLACK_API = 'https://slack.com/api/';
+import 'dotenv/config';
+import HttpApi from './httpApi.js';
 
 class SlackApi extends HttpApi {
   constructor() {
     super({
-      baseURL: SLACK_API,
+      baseURL: process.env.SLACK_API,
       headers: {
         Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`,
       },
@@ -29,11 +27,11 @@ class SlackApi extends HttpApi {
     return this.post({
       endpoint: 'chat.postMessage',
       data: {
-        blocks: JSON.stringify(blocks),
+        blocks,
         channel,
       },
     });
   }
 }
 
-module.exports = new SlackApi();
+export default new SlackApi();

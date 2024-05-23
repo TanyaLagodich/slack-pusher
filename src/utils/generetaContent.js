@@ -1,45 +1,36 @@
-function generateContent(tasks) {
-  const taskElements = tasks.map((task) => ({
-    type: 'rich_text_section',
-    elements: [
-      {
-        type: 'link',
-        url: task.permalink_url,
-        text: task.name,
-        style: {
-          bold: true,
-        },
-      },
-      {
-        type: 'text',
-        text: task.notes,
-      },
-      {
-        type: 'text',
-        text: '\n ',
-      },
-    ],
-  }));
-
+export const generateContent = (assignees, objectAttributes) => {
   return [
     {
-      type: 'header',
-      text: {
-        type: 'plain_text',
-        text: ' <!here> Задачи на code review с прошлой недели:',
-      },
-    },
-    {
-      type: 'rich_text',
-      elements: [
+      type: 'section',
+      fields: [
         {
-          type: 'rich_text_list',
-          style: 'bullet',
-          elements: taskElements,
+          type: 'mrkdwn',
+          text: `*Title:* ${objectAttributes.title}`
         },
-      ],
-    },
+        {
+          type: 'mrkdwn',
+          text: `*Description:* ${objectAttributes.description}`
+        },
+        {
+          type: 'mrkdwn',
+          text: `*Author:* ${assignees.name}`
+        },
+        {
+          type: 'mrkdwn',
+          text: `*Created At:* ${objectAttributes.created_at}`
+        },
+        {
+          type: 'mrkdwn',
+          text: `*URL:* ${objectAttributes.url}`
+        },
+      ]
+    }
   ];
 }
 
-module.exports = generateContent;
+
+// objectAttributes.title
+// objectAttributes.description
+// objectAttributes.author_id
+// objectAttributes.created_at
+// objectAttributes.url
