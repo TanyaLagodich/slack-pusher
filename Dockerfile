@@ -1,20 +1,22 @@
-# Используем базовый образ Node.js
-FROM node:14
+FROM node:20-alpine
 
-# Устанавливаем рабочую директорию внутри контейнера
+LABEL maintainer="Tatiana Lagodich"
+
+USER root
+
+# Set the working directory
 WORKDIR /usr/src/app
 
-# Копируем package.json и package-lock.json в текущую директорию
-COPY package*.json ./
+# Copy source code
+COPY --chown=node:node package*.json ./
 
-# Устанавливаем зависимости приложения
-RUN npm install
+# Running npm install
+RUN npm ci && npm cache clean --force
 
-# Копируем остальные файлы приложения
-COPY . .
+# Copy the rest of your app's source code from your host to your image filesystem.
+COPY --chown=node:node . .
 
-# Открываем порт, на котором будет работать приложение
+# Open the mapped port
 EXPOSE 3000
 
-# Команда для запуска приложения
 CMD ["node", "index.js"]

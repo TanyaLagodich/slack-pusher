@@ -14,6 +14,7 @@ export const generateContent = (assignees, objectAttributes) => {
         {
           type: 'mrkdwn',
           // Special for Shahriyar
+          // TODO Special for Zhanserik 'Merge request from boss'
           text: `*${assignees.id === 41 ? 'Person to blame' : 'Author'}:* ${assignees.name}`
         },
         {
@@ -24,8 +25,15 @@ export const generateContent = (assignees, objectAttributes) => {
           type: 'mrkdwn',
           text: `*URL:* ${objectAttributes.url}`
         },
+        {
+          type: 'mrkdwn',
+          text: `*Labels:* ${objectAttributes.labels.map((label) => label.title).join(', ')}`
+        },
       ]
-    }
+    },
+    {
+      type: 'divider'
+    },
   ];
 }
 

@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "ngrok": "ngrok http --domain=robust-tahr-emerging.ngrok-free.app 8080",
+    "ngrok": "ngrok http --domain=robust-tahr-emerging.ngrok-free.app 3000",
     "lint": "eslint . --fix"
   },
   "repository": {
@@ -24,7 +24,6 @@
     "axios": "^1.6.7",
     "dotenv": "^16.4.1",
     "fastify": "^4.27.0",
-    "node-cron": "^3.0.3",
     "sequelize": "^6.37.3",
     "sqlite3": "^5.1.7",
     "winston": "^3.11.0"
